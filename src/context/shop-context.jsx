@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState, createContext } from "react";
 import { PRODUCTS } from "../products";
 
@@ -43,9 +44,5 @@ export const ShopContextProvider = (props) => {
     getTotalCartAmount,
   };
 
-  return (
-    <ShopContext.Provider value={contextValue}>
-      {props.children}
-    </ShopContext.Provider>
-  );
+  return <ShopContext.Provider value={contextValue}>{props.children}</ShopContext.Provider>;
 };

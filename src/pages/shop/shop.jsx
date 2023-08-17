@@ -1,19 +1,30 @@
-import React from "react";
-import { PRODUCTS } from "../../products";
+import React, { useState } from "react";
+import { PRODUCTS_2 } from "../../products";
 import { Product } from "./product";
+import ProductDetails from "./product-details";
 import "./shop.css";
 
-export const Shop = () => {
+const Shop = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const closeProductDetails = () => {
+    setSelectedProduct(null);
+  };
+
   return (
-    <div className="shop">
-      <div className="shopTitle">
-        <h1>Mobile Shop</h1>
-      </div>
+    <div className="products">
       <div className="products">
-        {PRODUCTS.map((product) => (
-          <Product data={product} />
+        {PRODUCTS_2.map((product) => (
+          <Product key={product.id} data={product} onClick={() => handleProductClick(product)} />
         ))}
       </div>
+      {selectedProduct && <ProductDetails product={selectedProduct} onClose={closeProductDetails} />}
     </div>
   );
 };
+
+export default Shop;
